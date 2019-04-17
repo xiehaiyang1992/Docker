@@ -1,0 +1,29 @@
+1.下载配置资源
+mkdir /docker;cd /docker
+wget https://raw.githubusercontent.com/CentOS/sig-cloud-instance-images/9a389e11460bd809bb83c5fd4f095dbc8398d8cc/docker/Dockerfile 
+wget https://raw.githubusercontent.com/CentOS/sig-cloud-instance-images/9a389e11460bd809bb83c5fd4f095dbc8398d8cc/docker/centos-7-x86_64-docker.tar.xz
+
+2.安装服务
+yum install -y docker
+systemctl start  docker
+systemctl enable docker
+
+3.导入镜像
+docker build -t docker/haiyang .
+docker run -itd --name sshd-server --hostname sshd haiyang/centos "/bin/bash"
+docker exec -it sshd-server bash
+
+4.安装一般的sshd
+yum install -y openssh-server openssh-clients wget
+ssh-keygen -A
+
+
+
+
+
+
+
+彻底删除docker资源
+yum remove -y docker docker-client docker-common
+reboot
+find / -name docker *docker* docker* | xargs rm -rf

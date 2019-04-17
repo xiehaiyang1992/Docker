@@ -1,0 +1,7 @@
+1.压缩分卷
+split -b 95m -d jdk-8u191-linux-x64.tar.gz jdk-8u191-linux-x64.tar.gz.
+生成文件：jdk-8u191-linux-x64.tar.gz.00,jdk-8u191-linux-x64.tar.gz.01
+2.分卷解压
+cat jdk-8u191-linux-x64.tar.gz.0* >> jdk-8u191-linux-x64.tar.gz
+tar -zxvf jdk-8u191-linux-x64.tar.gz -C /usr/local/
+

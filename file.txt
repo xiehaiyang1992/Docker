@@ -1,0 +1,12 @@
+Dockerfile一般操作
+#移除yum源
+RUN rm -rf/etc/yum.repos.d/*
+#添加阿里yum
+ADD Centos-7.repo/etc/yum.repos.d/docker.repo
+RUN yum makecache
+
+
+#安装openssh wget
+RUN yum install -y openssh-server openssh-clients wget
+RUN ssh-keygen -A
+RUN echo 'root:haiyang' | chpasswd
